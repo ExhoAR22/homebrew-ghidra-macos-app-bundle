@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#----------------------------------------
+# Ghidra launch
+#----------------------------------------
+
+# Maximum heap memory may be changed if default is inadequate. This will generally be up to 1/4 of 
+# the physical memory available to the OS. Uncomment MAXMEM setting if non-default value is needed.
+#MAXMEM=2G
+
+export GHIDRA_INSTALL_DIR=$(dirname $(readlink /opt/homebrew/bin/ghidraRun))
+
+# Launch Ghidra
+"${GHIDRA_INSTALL_DIR}"/support/launch.sh bg Ghidra "${MAXMEM}" "" ghidra.GhidraRun "$@"
