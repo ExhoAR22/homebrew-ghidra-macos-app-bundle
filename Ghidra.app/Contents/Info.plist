@@ -4,8 +4,8 @@
 <dict>
     <key>CFBundleExecutable</key>
     <string>ghidra</string>
-    <!--key>CFBundleIconFile</key>
-    <string>Ghidra</string-->
+    <key>CFBundleIconFile</key>
+    <string>Ghidra</string>
     <key>CFBundleIdentifier</key>
     <string>gov.nsa.ghidra</string>
     <key>CFBundleDisplayName</key>
