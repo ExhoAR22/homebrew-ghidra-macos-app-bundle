@@ -12,10 +12,13 @@ export GHIDRA_INSTALL_DIR=$(dirname $(readlink /opt/homebrew/bin/ghidraRun))
 
 # Unquarantine Ghidra if it is (updates will cause this)
 # This is done to avoid the user being prompted to allow the decompiler to run
-if [ $(xattr $GHIDRA_INSTALL_DIR | grep com.apple.quarantine) == 'com.apple.quarantine' ]
+if [ '$(xattr $GHIDRA_INSTALL_DIR | grep com.apple.quarantine)' = 'com.apple.quarantine' ]
 then
+    echo 'Ghidra is quarantined, invoking xattr...'
     xattr -r -d com.apple.quarantine $GHIDRA_INSTALL_DIR
+else
+    echo 'Ghidra is not quarantined'
 fi
 
 # Launch Ghidra
-"${GHIDRA_INSTALL_DIR}"/support/launch.sh fg Ghidra "${MAXMEM}" "" ghidra.GhidraRun "$@"
+"${GHIDRA_INSTALL_DIR}"/support/launch.sh bg jdk Ghidra "${MAXMEM}" "" ghidra.GhidraRun "$@"
